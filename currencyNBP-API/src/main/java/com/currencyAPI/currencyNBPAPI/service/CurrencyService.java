@@ -12,9 +12,6 @@ import org.springframework.stereotype.Service;
 public class CurrencyService {
 
     private final CurrencyClient currencyClient;
-
-
-
     public GoldDto getCurrency() {
         return currencyClient.getGoldPrice("cenyzlota");
     }

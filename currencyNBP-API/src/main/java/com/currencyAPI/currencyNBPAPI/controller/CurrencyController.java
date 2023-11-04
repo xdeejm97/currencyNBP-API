@@ -5,16 +5,21 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController("/currency")
 @RequiredArgsConstructor
 public class CurrencyController {
 
 
     private final CurrencyService currencyService;
 
-    @GetMapping("/currency")
-    public String getCurrency(){
+    @GetMapping("/goldPrice")
+    public String getGoldPrice(){
         currencyService.getCurrency();
+        return null;
+    }
+    @GetMapping("/")
+    public String getCurrencyPrice(){
+
         return null;
     }
 
