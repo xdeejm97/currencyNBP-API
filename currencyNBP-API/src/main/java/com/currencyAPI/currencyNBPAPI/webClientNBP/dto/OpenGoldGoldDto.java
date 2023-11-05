@@ -8,5 +8,5 @@ import java.time.LocalDate;
 public class OpenGoldGoldDto {
 
 //    private String data;
-    private float cena;
+    private OpenCenaCenaDto cenaZlota;
 }
