@@ -1,10 +1,8 @@
 package com.currencyAPI.currencyNBPAPI.controller;
 
-import com.currencyAPI.currencyNBPAPI.model.GoldDto;
 import com.currencyAPI.currencyNBPAPI.service.CurrencyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -16,12 +14,11 @@ public class CurrencyController {
 
     @GetMapping("/cenyzlota")
     public void getGoldPrice(){
-        currencyService.getCurrency();
+        currencyService.getGoldPrice();
     }
-    @GetMapping("/")
-    public String getCurrencyPrice(){
-
-        return null;
+    @GetMapping("/exchange/USD-PLN")
+    public void getCurrencyPrice(){
+        currencyService.getCurrencyUSDPrice();
     }
 
 }

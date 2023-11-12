@@ -24,11 +24,11 @@ public class CurrencyClient {
     private final String NBP_API = "http://api.nbp.pl/api/";
 
 
-    public void getGoldPrice(){
-        ResponseEntity<List<OpenCenaCenaDto>> cenaResponse = restTemplate.exchange(NBP_API + "cenyzlota",
+    public void getGoldPrice(){ // poczytać o response entity i czy da sie zrobić Mapę
+        ResponseEntity<List<OpenCenaCenaDto>> priceResponse = restTemplate.exchange(NBP_API + "cenyzlota",
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<OpenCenaCenaDto>>() {
                 });
-        List<OpenCenaCenaDto> rates = cenaResponse.getBody();
+        List<OpenCenaCenaDto> rates = priceResponse.getBody();
         rates.forEach(System.out::println);
 
         ResponseEntity<List<OpenDataDataDto>> dataResponse = restTemplate.exchange(NBP_API + "cenyzlota",
@@ -37,5 +37,18 @@ public class CurrencyClient {
         List<OpenDataDataDto> date = dataResponse.getBody();
         date.forEach(System.out::println);
     }
+    public void getUSDPrice(){
+
+//        ResponseEntity <> currencyUSDResponse = restTemplate.exchange();
+        
+    }
+
+    /**
+     * dodać inne waluty
+     * dodać zwracanego json
+     *
+     * */
+
+
 
 }

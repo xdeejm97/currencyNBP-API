@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.time.LocalDate;
 
 @Getter
-@Builder
+@Builder // czy potrzebne
 public class GoldDto {
 
     private String date;

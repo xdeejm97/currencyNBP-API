@@ -1,12 +1,9 @@
 package com.currencyAPI.currencyNBPAPI.service;
 
-import com.currencyAPI.currencyNBPAPI.model.GoldDto;
 import com.currencyAPI.currencyNBPAPI.webClientNBP.currency.CurrencyClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -14,7 +11,11 @@ import java.util.List;
 public class CurrencyService {
 
     private final CurrencyClient currencyClient;
-    public void getCurrency() {
+    public void getGoldPrice() {
         currencyClient.getGoldPrice();
     }
+    public void getCurrencyUSDPrice(){
+        currencyClient.getUSDPrice();
+    }
+
 }
