@@ -7,6 +7,6 @@ import java.time.LocalDate;
 @Getter
 public class OpenGoldGoldDto {
 
-//    private String data;
+    private OpenDataDataDto data;
     private OpenCenaCenaDto cenaZlota;
 }

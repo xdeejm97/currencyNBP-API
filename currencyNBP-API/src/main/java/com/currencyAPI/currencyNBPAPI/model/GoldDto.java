@@ -9,7 +9,7 @@ import java.time.LocalDate;
 @Builder
 public class GoldDto {
 
-//    private String date;
+    private String date;
     private float price;
 
 }
