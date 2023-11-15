@@ -12,7 +12,7 @@ public class CurrencyController {
 
     private final CurrencyService currencyService;
 
-    @GetMapping("/cenyzlota")
+    @GetMapping("/cenyzlota") // tutaj resposne entity chyba musi byc
     public void getGoldPrice(){
         currencyService.getGoldPrice();
     }

@@ -1,5 +1,6 @@
 package com.currencyAPI.currencyNBPAPI.webClientNBP.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 
 import java.time.LocalDate;
@@ -7,6 +8,15 @@ import java.time.LocalDate;
 @Getter
 public class OpenGoldGoldDto {
 
-    private OpenDataDataDto data;
-    private OpenCenaCenaDto cenaZlota;
+    private String data;
+    private float cena;
+
+
+    @Override
+    public String toString() {
+        return "OpenGoldGoldDto{" +
+                "data='" + data + '\'' +
+                ", cena złota=" + cena +
+                '}';
+    }
 }

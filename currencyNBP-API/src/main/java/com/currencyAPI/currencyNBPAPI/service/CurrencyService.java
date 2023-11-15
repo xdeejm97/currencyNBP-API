@@ -12,7 +12,8 @@ public class CurrencyService {
 
     private final CurrencyClient currencyClient;
     public void getGoldPrice() {
-        currencyClient.getGoldPrice();
+//        currencyClient.getGoldPrice();
+        currencyClient.getGoldDate();
     }
     public void getCurrencyUSDPrice(){
         currencyClient.getUSDPrice();
