@@ -1,6 +1,7 @@
 package com.currencyAPI.currencyNBPAPI.controller;
 
 import com.currencyAPI.currencyNBPAPI.dto.OpenGoldGoldDto;
+import com.currencyAPI.currencyNBPAPI.dto.OpenUSD_PLNDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.ParameterizedTypeReference;
@@ -26,7 +27,7 @@ public class CurrencyController {
     private final String NBP_API = "http://api.nbp.pl/api/";
 
     @GetMapping("/cenyzlota") // czy zostawić tak z rest template czy bardziej w logike biznesowa
-    public ResponseEntity<List<OpenGoldGoldDto>> getGoldData(){
+    public ResponseEntity<List<OpenGoldGoldDto>> getGoldData() {
 
         ResponseEntity<List<OpenGoldGoldDto>> dataResponse = restTemplate.exchange(NBP_API + "cenyzlota",
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<OpenGoldGoldDto>>() {
@@ -44,8 +45,22 @@ public class CurrencyController {
 
 
     }
-    @GetMapping("/exchange/USD-PLN")
-    public void getCurrencyPrice(){
+
+    @GetMapping("/exchange/usd")
+    public ResponseEntity<OpenUSD_PLNDto> getCurrencyPriceUSDPLN() {
+        ResponseEntity<OpenUSD_PLNDto> dataResponse = restTemplate.exchange(NBP_API + "exchangerates/rates/a/usd",
+                HttpMethod.GET, null, new ParameterizedTypeReference<OpenUSD_PLNDto>() {
+                });
+
+        OpenUSD_PLNDto exchangeResponseUSDPLN = dataResponse.getBody();
+
+        if(exchangeResponseUSDPLN == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }else {
+            log.info(String.valueOf(exchangeResponseUSDPLN));
+            return new ResponseEntity<>(exchangeResponseUSDPLN, HttpStatus.OK);
+        }
+
     }
 
 }
