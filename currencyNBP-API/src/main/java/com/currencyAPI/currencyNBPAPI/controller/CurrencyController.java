@@ -27,7 +27,7 @@ public class CurrencyController {
     private final String NBP_API = "http://api.nbp.pl/api/";
 
     @GetMapping("/cenyzlota") // czy zostawić tak z rest template czy bardziej w logike biznesowa
-    public ResponseEntity<List<OpenGoldGoldDto>> getGoldData() {
+    public List<OpenGoldGoldDto> getGoldData() {
 
         ResponseEntity<List<OpenGoldGoldDto>> dataResponse = restTemplate.exchange(NBP_API + "cenyzlota",
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<OpenGoldGoldDto>>() {
@@ -36,29 +36,29 @@ public class CurrencyController {
         List<OpenGoldGoldDto> goldResponse = dataResponse.getBody();
 
 
-        if (goldResponse.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        } else {
+        if (dataResponse.getStatusCode() == HttpStatus.OK) {
             log.info(String.valueOf(goldResponse));
-            return new ResponseEntity<>(goldResponse, HttpStatus.OK);
+            return dataResponse.getBody();
+        } else {
+            throw new RuntimeException("Failed to fetch data");
         }
 
 
     }
 
     @GetMapping("/exchange/usd")
-    public ResponseEntity<OpenUSD_PLNDto> getCurrencyPriceUSDPLN() {
+    public OpenUSD_PLNDto getCurrencyPriceUSDPLN() {
         ResponseEntity<OpenUSD_PLNDto> dataResponse = restTemplate.exchange(NBP_API + "exchangerates/rates/a/usd",
                 HttpMethod.GET, null, new ParameterizedTypeReference<OpenUSD_PLNDto>() {
                 });
 
         OpenUSD_PLNDto exchangeResponseUSDPLN = dataResponse.getBody();
 
-        if(exchangeResponseUSDPLN == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }else {
+        if (dataResponse.getStatusCode() == HttpStatus.OK) {
             log.info(String.valueOf(exchangeResponseUSDPLN));
-            return new ResponseEntity<>(exchangeResponseUSDPLN, HttpStatus.OK);
+            return dataResponse.getBody();
+        } else {
+            throw new RuntimeException("Failed to fetch data");
         }
 
     }
