@@ -7,7 +7,8 @@ import java.util.List;
 
 @Getter
 @ToString
-public class OpenUSD_PLNDto {
+public class USD_PLN_Dto {
+
 
     private String currency;
     private String code;
